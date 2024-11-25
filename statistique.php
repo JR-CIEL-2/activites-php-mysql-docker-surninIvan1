@@ -36,4 +36,16 @@ $tab2 = [5, 7, 9, 12, 34, 45];
 $médianeValeur = médiane($tab2);
 echo 'La médiane est de ' . $médianeValeur;
 
+function triangle($n) {
+    for ($i = 1; $i <= $n; $i++) {
+        echo str_repeat("*", $i) . "<br>";
+    }
+}
+
+if (isset($_GET['n'])) {
+    $n = (int)$_GET['n'];
+} else {
+    echo "Paramètre 'n' manquant ";
+}
+
 ?>

@@ -2,5 +2,7 @@
 
 include 'statistique.php';
 
-include 'ex1.php'
+include 'triangle.php';
+ function triangle() {  
+}
 ?>
