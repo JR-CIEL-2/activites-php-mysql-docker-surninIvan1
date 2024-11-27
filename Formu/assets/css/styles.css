@@ -1,0 +1,11 @@
+.input-error {
+    border-color: red;
+}
+
+.input-success {
+    border-color: lightgreen;
+}
+
+#form-feedback {
+    margin-top: 20px;
+}
