@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tri par Sélection</title>
+    <script>
+        // Tableau pour stocker les entiers
+        let tableau = [];
+
+        // Fonction pour ajouter un entier dans le tableau
+        function ajouterEntier() {
+            let valeur = parseInt(document.getElementById('valeur').value);
+            if (valeur > 0) {
+                tableau.push(valeur);
+                document.getElementById('valeur').value = ''; // Vide le champ de saisie
+                afficherTableau(); // Affiche le tableau actuel
+            } else {
+                alert("Veuillez entrer un nombre positif.");
+            }
+        }
+
+        // Fonction pour afficher le tableau
+        function afficherTableau() {
+            document.getElementById('tableau').innerText = JSON.stringify(tableau);
+        }
+
+        // Fonction pour envoyer le tableau au serveur via fetch
+        function envoyerTableau() {
+            fetch('server.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tableau: tableau })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Affiche la réponse JSON
+                document.getElementById('mediane').innerText = 'Médiane : ' + data.mediane;
+            })
+            .catch(error => console.error('Erreur:', error));
+        }
+    </script>
+</head>
+<body>
+    <h1>Tri par Sélection</h1>
+    
+    <label for="valeur">Entrez un nombre :</label>
+    <input type="number" id="valeur" />
+    <button onclick="ajouterEntier()">Ajouter</button>
+    <button onclick="envoyerTableau()">Envoyer</button>
+
+    <h2>Tableau actuel :</h2>
+    <pre id="tableau"></pre>
+
+    <h3 id="mediane">Médiane : </h3>
+</body>
+</html>
