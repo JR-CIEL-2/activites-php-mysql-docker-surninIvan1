@@ -1,6 +1,5 @@
 <?php
 
-
 function moyenne($notes) {
     if (count($notes) === 0) {
         return 0; 
@@ -8,35 +7,36 @@ function moyenne($notes) {
     return array_sum($notes) / count($notes);
 }
 
-
 $tab = [15, 18, 9];
 $moyenneValeur = moyenne($tab);
-echo 'La moyenne est de ' . $moyenneValeur ,' et ';
+echo 'La moyenne est de ' . $moyenneValeur . ' et ';
 
-function médiane($notes) {
- 
+function mediane($notes) {
     if (count($notes) === 0) {
         return 0;
     }
 
-
-    sort($notes);
-    
+    sort($notes); // Tri des valeurs
     $count = count($notes);
     $middleIndex = floor($count / 2); 
 
     if ($count % 2 === 1) {
-        return $notes[$middleIndex];
+        return $notes[$middleIndex]; // Retourne la valeur du milieu si impair
     } else {
-        return ($notes[$middleIndex - 1] + $notes[$middleIndex]) / 2; 
+        return ($notes[$middleIndex - 1] + $notes[$middleIndex]) / 2; // Moyenne des deux valeurs centrales si pair
     }
 }
 
 $tab2 = [5, 7, 9, 12, 34, 45];
-$médianeValeur = médiane($tab2);
-echo 'La médiane est de ' . $médianeValeur;
+$medianeValeur = mediane($tab2);
+echo 'La médiane est de ' . $medianeValeur . '<br>';
 
 function triangle($n) {
+    if ($n <= 0) {
+        echo "Le nombre de lignes doit être supérieur à 0.<br>";
+        return;
+    }
+
     for ($i = 1; $i <= $n; $i++) {
         echo str_repeat("*", $i) . "<br>";
     }
@@ -44,8 +44,9 @@ function triangle($n) {
 
 if (isset($_GET['n'])) {
     $n = (int)$_GET['n'];
+    triangle($n);
 } else {
-    echo "Paramètre 'n' manquant ";
+    echo "Paramètre 'n' manquant.<br>";
 }
 
 ?>
