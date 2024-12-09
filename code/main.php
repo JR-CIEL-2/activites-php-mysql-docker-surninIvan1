@@ -1,41 +1,24 @@
 <?php
-include 'statistique.php'; // Assurez-vous que moyenne() et mediane() sont définies ici
-include 'triangle.php';    // Assurez-vous que triangle() est définie ici
-include 'read_tab.php';    // Assurez-vous que afficher_tableau_valeur() et afficher_tableau_reference() sont définies ici
-include 'tri_selection.php'; // Assurez-vous que tri_selection_valeur() et tri_selection_reference() sont définies ici
+include 'triselection.php';  // Inclut les fonctions de tri
+include 'read_tab.php';       // Inclut la fonction d'affichage
 
-echo "<pre>"; // Ajout pour bien afficher le contenu
+// Exemple de tableau pour passer par valeur
+$tab_valeur = [4, 2, 8, 1, 5];
+echo "Test avec tri_selection_valeur :<br>";
+echo "Tableau avant tri : ";
+read_tab($tab_valeur); 
+$sorted_tab_valeur = tri_selection_valeur($tab_valeur);
+echo "<br>Tableau après tri : ";
+read_tab($sorted_tab_valeur); 
 
-// Calcul de la moyenne
-$tab = [15, 12, 9]; 
-$moyenneNotes = moyenne($tab);
-echo "La moyenne des notes est : " . $moyenneNotes . "<br>";
+echo "<br><br>";
 
-// Calcul de la médiane
-echo "Médiane des tableaux :<br>";
-mediane([2007, 2002, 2003, 2005, 2020, 2016, 2011]); // Affichage dans la fonction mediane
-mediane([1500, 4500, 2200, 1500, 3300, 1800, 1700, 2000, 4000]); // Idem
-
-echo "<br>";
-
-// Tri par sélection
-echo "Tri du premier tableau :<br>";
-$tableau1 = [22, 13, 9, 50, 70];
-$tableau1_trie = tri_selection_valeur($tableau1);
-afficher_tableau_valeur($tableau1_trie);
-
-echo "<br>";
-
-echo "Tri du deuxième tableau :<br>";
-$tableau2 = [20, 37, 12, 40, 56, 8];
-tri_selection_reference($tableau2);
-afficher_tableau_reference($tableau2);
-
-echo "<br>";
-
-// Affichage d'un triangle
-echo "Affichage du triangle :<br>";
-triangle(10);
-
-echo "</pre>";
+// Exemple de tableau pour passer par référence
+$tab_reference = [10, 3, 6, 7, 2];
+echo "Test avec tri_selection_reference :<br>";
+echo "Tableau avant tri : ";
+read_tab($tab_reference); 
+tri_selection_reference($tab_reference);
+echo "<br>Tableau après tri : ";
+read_tab($tab_reference);
 ?>
