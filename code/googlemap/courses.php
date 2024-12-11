@@ -24,19 +24,13 @@ if (!isset($coursesData['courses']) || !is_array($coursesData['courses'])) {
 
 $courses = $coursesData['courses'];
 
-// Récupération du payload (données POST)
-$input = json_decode(file_get_contents('php://input'), true);
-if (json_last_error() !== JSON_ERROR_NONE) {
-    echo json_encode(['error' => 'Payload JSON invalide.']);
-    exit;
-}
-
-if (!isset($input['courseId'])) {
+// Récupération du paramètre courseId depuis la requête GET
+if (!isset($_GET['courseId'])) {
     echo json_encode(['error' => 'L’identifiant de la course (courseId) est requis.']);
     exit;
 }
 
-$courseId = $input['courseId'];
+$courseId = $_GET['courseId'];
 
 // Recherche de la course correspondant à l’ID
 $selectedCourse = null;
